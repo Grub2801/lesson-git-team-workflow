@@ -11,23 +11,26 @@ class ActorsController < ApplicationController
   def create
     @actor = Actor.new(actor_params)
     if @actor.save
-      redirect_to
+
+      redirect_to actor_path(@actor.id)
     else
       render :new
     end
   end
 
+  def edit
+  end
+
   def update
-    @actor  = actor.find(params[:id])
     if @actor.update(actor_params)
-      redirect_to
+      redirect_to actor_path(@actor.id)
     else
       render :edit
   end
 
   private
   def set_actor
-    @actor = Actor.new(actor_params)
+    @actor = Actor.find(params[:id])
   end
 
   def actor_params
